@@ -85,6 +85,11 @@ export const getAuthConfig = () => {
       ZITADEL_CLIENT_ID: z.string().optional(),
       ZITADEL_CLIENT_SECRET: z.string().optional(),
       ZITADEL_ISSUER: z.string().optional(),
+
+      // CASDOOR
+      CASDOOR_CLIENT_ID: z.string().optional(),
+      CASDOOR_CLIENT_SECRET: z.string().optional(),
+      CASDOOR_ISSUER: z.string().optional(),
     },
 
     runtimeEnv: {
@@ -122,6 +127,11 @@ export const getAuthConfig = () => {
       ZITADEL_CLIENT_ID: process.env.ZITADEL_CLIENT_ID,
       ZITADEL_CLIENT_SECRET: process.env.ZITADEL_CLIENT_SECRET,
       ZITADEL_ISSUER: process.env.ZITADEL_ISSUER,
+
+      // CASDOOR
+      CASDOOR_CLIENT_ID: process.env.CASDOOR_CLIENT_ID,
+      CASDOOR_CLIENT_SECRET: process.env.CASDOOR_CLIENT_SECRET,
+      CASDOOR_ISSUER: process.env.CASDOOR_ISSUER,
     },
   });
 };

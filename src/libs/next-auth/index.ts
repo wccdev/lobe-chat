@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys-fix/sort-keys-fix */
 import NextAuth from 'next-auth';
 
 import { authEnv } from '@/config/auth';
@@ -35,6 +36,7 @@ const nextAuth = NextAuth({
       return session;
     },
   },
+  // @ts-ignore
   providers: initSSOProviders(),
   secret: authEnv.NEXT_AUTH_SECRET,
   trustHost: true,
