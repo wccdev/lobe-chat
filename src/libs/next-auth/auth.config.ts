@@ -39,6 +39,7 @@ export default {
       return session;
     },
   },
+  // @ts-ignore
   providers: initSSOProviders(),
   secret: authEnv.NEXT_AUTH_SECRET,
   trustHost: true,
