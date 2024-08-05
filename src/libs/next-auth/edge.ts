@@ -23,4 +23,5 @@ import authConfig from './auth.config';
  * signOut();
  * ```
  */
+  // @ts-ignore
 export default NextAuth(authConfig);
