@@ -31,8 +31,4 @@ export default NextAuth({
   session: {
     strategy: 'jwt',
   },
-  // @ts-ignore
-  providers: initSSOProviders(),
-  secret: authEnv.NEXT_AUTH_SECRET,
-  trustHost: true,
 });
