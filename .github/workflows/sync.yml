@@ -87,6 +87,4 @@ jobs:
           tag_name: ${{ steps.get-latest-tag.outputs.latest_tag }}
           release_name: Release ${{ steps.get-latest-tag.outputs.latest_tag }}
           draft: false
-          prerelease: falseutputs.latest_tag }}
-            draft: false
-            prerelease: false
+          prerelease: false
