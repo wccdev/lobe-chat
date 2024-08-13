@@ -52,3 +52,36 @@ jobs:
             [lobechat]: https://github.com/lobehub/lobe-chat
             [tutorial-zh-CN]: https://github.com/lobehub/lobe-chat/wiki/Upstream-Sync.zh-CN
             [tutorial-en-US]: https://github.com/lobehub/lobe-chat/wiki/Upstream-Sync
+
+      - name: Get latest tag from upstream
+        id: get-latest-tag
+        run: |
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1` --abbrev=0)
+          echo "::set-output name=latest_tag::$latest_tag"
+  
+      - name: Check if the tag already exists in this repo
+        id: check-tag
+        run: |
+          if git rev-parse "refs/tags/${{ steps.get-latest-tag.outputs.latest_tag }}" >/dev/null 2>&1
+          then
+            echo "tag_exists=true" >> $GITHUB_ENV
+          else
+            echo "tag_exists=false" >> $GITHUB_ENV
+          fi
+  
+      - name: Create and push new tag
+        if: env.tag_exists == 'false'
+        run: |
+          git tag ${{ steps.get-latest-tag.outputs.latest_tag }}
+          git push origin ${{ steps.get-latest-tag.outputs.latest_tag }}
+  
+      - name: Create GitHub Release
+        if: env.tag_exists == 'false'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get-latest-tag.outputs.latest_tag }}
+          release_name: Release ${{ steps.get-latest-tag.outputs.latest_tag }}
+          draft: false
+          prerelease: false
