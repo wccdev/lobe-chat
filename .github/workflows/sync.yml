@@ -53,6 +53,9 @@ jobs:
             [tutorial-zh-CN]: https://github.com/lobehub/lobe-chat/wiki/Upstream-Sync.zh-CN
             [tutorial-en-US]: https://github.com/lobehub/lobe-chat/wiki/Upstream-Sync
 
+      - name: Fetch all tags from upstream
+        run: git fetch upstream --tags
+  
       - name: Get latest tag from upstream
         id: get-latest-tag
         run: |
@@ -84,4 +87,6 @@ jobs:
           tag_name: ${{ steps.get-latest-tag.outputs.latest_tag }}
           release_name: Release ${{ steps.get-latest-tag.outputs.latest_tag }}
           draft: false
-          prerelease: false
+          prerelease: falseutputs.latest_tag }}
+            draft: false
+            prerelease: false
