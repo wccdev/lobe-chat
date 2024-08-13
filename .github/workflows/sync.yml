@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.MY_PAT }}
 
       - name: Clean issue notice
         uses: actions-cool/issues-helper@v3
@@ -85,12 +87,3 @@ jobs:
           release_name: ${{ steps.get-latest-tag.outputs.latest_tag }}
           draft: false
           prerelease: false
-
-      - name: Trigger tag-based workflow
-        if: env.tag_exists == 'false'
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/wccdev/lobe-chat/dispatches \
-            -d '{"event_type":"new_tag_created","client_payload":{"tag":"${{ steps.get-latest-tag.outputs.latest_tag }}"}}'
