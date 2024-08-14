@@ -64,7 +64,7 @@ jobs:
       - name: Check if the tag already exists in this repo
         id: check-tag
         run: |
-          if git show-ref --verify --quiet "refs/tags/${{ steps.get-latest-tag.outputs.latest_tag }}"
+          if git ls-remote --tags | grep -q "refs/tags/${{ steps.get-latest-tag.outputs.latest_tag }}"
           then
             echo "::set-output name=tag_exists::true"
           else
