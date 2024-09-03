@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.MY_PAT }}
+          token: ${{ secrets.MY_TOKEN }}
 
       - name: Clean issue notice
         uses: actions-cool/issues-helper@v3
